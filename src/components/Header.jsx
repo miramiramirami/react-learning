@@ -1,7 +1,9 @@
 import logo from '../../public/logo-name.svg'
+import {useState} from 'react'
 
 export default function Header (){
-    const now = new Date()
+    const [now, setNow] = useState(new Date())
+    setInterval(()=> setNow(new Date()),1000)
 
     return (
         <header>
@@ -9,4 +11,4 @@ export default function Header (){
             <span>Время: { now.toLocaleTimeString() }</span>
         </header>
     )
-}
+} 
