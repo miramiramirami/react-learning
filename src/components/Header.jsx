@@ -11,4 +11,4 @@ export default function Header (){
             <span>Время: { now.toLocaleTimeString() }</span>
         </header>
     )
-} 
+}

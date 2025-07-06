@@ -20,14 +20,8 @@ export default function App() {
       <Header/>
 
      <main>
-        <section>
-          <WayToTeach {...ways[0]} />
-          <WayToTeach {...ways[1]} />
-          <WayToTeach {...ways[2]} />
-          <WayToTeach {...ways[3]} />
-        </section>
-
-        <section>
+      
+        <section className='RulesSection'>
           <h3>Главные советы для изучения</h3>
           <Button isActive={contentType === 'practice'} onClick={() => handleClick('practice')}>Практика</Button>
           <Button isActive={contentType === 'code'} onClick={() => handleClick('code')}>Код</Button>
@@ -44,6 +38,11 @@ export default function App() {
             <div className='rulesBlock'>Нажми на кнопку</div>
           )}
         </section>
+
+         <section>
+          {ways.map(way => <WayToTeach key={way.title} {...way}/>)}
+        </section> 
+
       </main> 
     </div>
   )
