@@ -1,6 +1,6 @@
 import Button from "./Button/Button"
-import { rules} from '../data'
 
+import {rules} from '../data'
 import {useState} from 'react'
 
 export default function RulesSection(){
