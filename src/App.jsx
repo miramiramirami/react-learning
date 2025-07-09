@@ -1,4 +1,4 @@
-import Header from "./components/Header"
+import Header from "./components/Header/Header"
 import IntroSection from "./components/IntroSection"
 import RulesSection from './components/RulesSection'
 import TabsSection from "./components/TabsSection"
