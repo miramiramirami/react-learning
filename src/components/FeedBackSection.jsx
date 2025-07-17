@@ -2,29 +2,43 @@ import Button from './Button/Button'
 import {useState} from 'react'
 
 export default function FeedBackSection (){
-    const [name, setName] = useState('')
-    const [hasError, setHasError] = useState(false)
-    const [reason, setReason] = useState('help')
+    const [form, setForm] = useState({
+        name: '',
+        hasError: true,
+        reason: 'help'
+    })
+    // const [name, setName] = useState('')
+    // const [hasError, setHasError] = useState(false)
+    // const [reason, setReason] = useState('help')
 
     function handleNameChange (event) {
-        setName(event.target.value)
-        setHasError(event.target.value.trim().length === 0)
+        // setName(event.target.value)
+        // setHasError(event.target.value.trim().length === 0)
+
+        setForm(prev => ({...prev,
+            name: event.target.value,
+            hasError: event.target.value.trim().length === 0,
+        }))
     }
 
-    function handleReasonChange(event){
-        setReason(event.target.value)
+    function toggleError(){
+        // setHasError((prev) => !prev)
     }
 
     return (
         <section style={{marginBottom: '25px'}}>
             <h1 style={{marginBottom: '25px'}}>Обратная связь</h1>
 
+            <Button onClick={toggleError}>Toggle Error</Button>
+
             <form action="">
                 <label htmlFor="name">Ваше имя</label>
-                <input type="text" id="name" style={{border: hasError ? '1px solid red' : null}} className='control' value={name} onChange={handleNameChange}/>
+                <input type="text" id="name" style={{border: form.hasError ? '1px solid red' : null}} className='control' value={form.name} onChange={handleNameChange}/>
 
                 <label htmlFor="reason">Причина обращения</label>
-                <select  id="reason" className="control" value={reason} onChange={handleReasonChange}>
+                <select  id="reason" className="control" value={form.name.reason} onChange={event => setForm(prev =>({
+                    ...prev, reason: event.target.value})
+                )}>
                     <option value="error">Ошибка</option>
                     <option value="help">Нужная помощь</option>
                     <option value="suggest">Предложение</option>
@@ -32,12 +46,12 @@ export default function FeedBackSection (){
 
 
                 <pre>
-                    Name : {name}
+                    Name : {form.name}
                     <br />
-                    Reason : {reason}
+                    Reason : {form.reason}
                 </pre>
                 <br />
-                <Button disabled={hasError}>Отправить</Button>
+                <Button disabled={form.hasError}>Отправить</Button>
             </form>
         </section>
     )
