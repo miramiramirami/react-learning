@@ -1,10 +1,30 @@
 import Button from './Button/Button'
-import {useState} from 'react'
+import {useState, useRef} from 'react'
+
+function StateVsRef(){
+    const input = useRef()
+    const [value, setValue] = useState('')
+    const [show, setShow] = useState(false)
+
+    function handleKeyDown(event){
+        if (event.key === 'Enter'){
+            setShow(true)
+        }
+    }
+
+    return (
+        <div>
+            <h3>Input value: {show && input.current?.value}</h3>
+            <input ref={input} type="text" onKeyDown={handleKeyDown} className='control'/>
+        </div>
+    )
+}
+
 
 export default function FeedBackSection (){
     const [form, setForm] = useState({
         name: '',
-        hasError: true,
+        hasError: false,
         reason: 'help'
     })
     // const [name, setName] = useState('')
@@ -31,7 +51,7 @@ export default function FeedBackSection (){
 
             <Button onClick={toggleError}>Toggle Error</Button>
 
-            <form action="">
+            <form >
                 <label htmlFor="name">Ваше имя</label>
                 <input type="text" id="name" style={{border: form.hasError ? '1px solid red' : null}} className='control' value={form.name} onChange={handleNameChange}/>
 
@@ -52,7 +72,15 @@ export default function FeedBackSection (){
                 </pre>
                 <br />
                 <Button disabled={form.hasError}>Отправить</Button>
+                <br />
+                <br />
+                <hr />
+                <br />
+                
             </form>
+            <StateVsRef/>
         </section>
+
+        
     )
 }   

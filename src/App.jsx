@@ -5,9 +5,10 @@ import TabsSection from "./components/TabsSection"
 import WaysSection from './components/WaysSection'
 import FeedBackSection from "./components/FeedBackSection"
 import { useState } from "react"
+import EffectSection from "./components/EffectSection"
 
 export default function App() {
-  const [tab, setTab] = useState('feedback')
+  const [tab, setTab] = useState('main')
 
   return (
     <>
@@ -22,6 +23,8 @@ export default function App() {
         </>}
 
         {tab === 'feedback' && <FeedBackSection/>}
+
+        {tab === 'effect' && <EffectSection/>}
         
       </main> 
     </>
